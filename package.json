@@ -1,0 +1,9 @@
+{
+  "name": "paint-pad-artwork",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@bitbucket.org:andypearson/paint-pad-artwork.git",
+  "author": "Andy Pearson",
+  "license": "MIT",
+  "private": true
+}
