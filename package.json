@@ -1,9 +1,18 @@
 {
   "name": "paint-pad-artwork",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@bitbucket.org:andypearson/paint-pad-artwork.git",
   "author": "Andy Pearson",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
+  }
 }
