@@ -11,7 +11,8 @@ const DEFAULT_OPTIONS = {
   maxCircles: 1000,
   logoScale: 6,
   logoBorder: 16,
-  circleSpacing: 4
+  circleSpacing: 4,
+  overlapChance: 0
 }
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
   const [logoScale, setLogoScale] = useState(DEFAULT_OPTIONS.logoScale)
   const [logoBorder, setLogoBorder] = useState(DEFAULT_OPTIONS.logoBorder)
   const [circleSpacing, setCircleSpacing] = useState(DEFAULT_OPTIONS.circleSpacing)
+  const [overlapChance, setOverlapChance] = useState(DEFAULT_OPTIONS.overlapChance)
 
   useEffect(() => draw(canvasEl.current, DEFAULT_OPTIONS), [])
 
@@ -37,7 +39,8 @@ const App = () => {
       maxCircles,
       logoScale,
       logoBorder,
-      circleSpacing
+      circleSpacing,
+      overlapChance
     })
   }
 
@@ -53,6 +56,7 @@ const App = () => {
           <ToolbarOption label="Logo scale" name="logo_scale" value={logoScale} type="number" onChange={setLogoScale} />
           <ToolbarOption label="Logo border" name="logo_border" value={logoBorder} type="number" onChange={setLogoBorder} />
           <ToolbarOption label="Circle spacing" name="circle_spacing" value={circleSpacing} type="number" onChange={setCircleSpacing} />
+          <ToolbarOption label="Overlap chance" name="overlap_chance" value={overlapChance} type="number" onChange={setOverlapChance} />
 
           <input type="submit" value="UPDATE" onClick={updateArtwork} />
         </div>

@@ -6,3 +6,6 @@ export const randomInt = (min, max) =>
 
 export const randomLowerInt = (min, max) =>
   Math.floor(randomLower() * (1 + max - min) + min)
+
+export const oneIn = (n) =>
+  randomInt(0, n) === 1

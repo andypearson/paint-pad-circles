@@ -2,7 +2,7 @@ import { sample } from "lodash"
 
 import colors from "../data/colors"
 
-import { randomLower, randomInt, randomLowerInt } from "../lib/random"
+import { randomLower, randomInt, randomLowerInt, oneIn } from "../lib/random"
 import { rgbaHex } from "../lib/color"
 import { drawCircle, drawImage, resize } from "../lib/canvas"
 import { distanceBetweenCircles, circlesOverlap } from "../lib/shape"
@@ -16,6 +16,7 @@ export const draw = (canvas, {
   logoScale,
   logoBorder,
   circleSpacing,
+  overlapChance
 }) => {
   resize(canvas, { width, height })
 
@@ -36,7 +37,7 @@ export const draw = (canvas, {
 
     const circle = { x, y, r, color: rgbaHex(sample(colors), 0.7) }
 
-    if (!circlesOverlap(circle, circles, circleSpacing)) {
+    if (oneIn(overlapChance) || !circlesOverlap(circle, circles, circleSpacing)) {
       circles.push(circle)
     }
   }
