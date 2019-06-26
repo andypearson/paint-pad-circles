@@ -7,12 +7,14 @@ body {
   font-family: Fira Code, monospace;
 }
 
-input {
+input,
+select {
   font-family: Fira Code, monospace;
   width: 100%;
 }
 
-input[type=number] {
+input[type=number],
+select {
   font-size: 16px;
   border: 2px solid #bbb;
   border-radius: 3px;

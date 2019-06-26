@@ -7,6 +7,21 @@ import { rgbaHex } from "../lib/color"
 import { drawCircle, drawImage, resize } from "../lib/canvas"
 import { distanceBetweenCircles, circlesOverlap } from "../lib/shape"
 
+const LOGOS = {
+  icon: {
+    width: 35,
+    height: 20,
+    circles: 2,
+    path: "./assets/icon.svg"
+  },
+  logo: {
+    width: 125,
+    height: 20,
+    circles: 8,
+    path: "./assets/logo.svg"
+  }
+}
+
 export const draw = (canvas, {
   width,
   height,
@@ -16,19 +31,37 @@ export const draw = (canvas, {
   logoScale,
   logoBorder,
   circleSpacing,
-  overlapChance
+  overlapChance,
+  logoStyle
 }) => {
   resize(canvas, { width, height })
 
   const ctx = canvas.getContext("2d")
+  const circles = []
 
-  const logoWidth = 35 * logoScale
-  const logoHeight = 20 * logoScale
+  const logo = LOGOS[logoStyle]
+  let logoWidth
+  let logoHeight
 
-  const circles = [
-    { x: (width/2) - ((logoWidth - logoHeight) / 2), y: height/2, r: (logoHeight / 2) + logoBorder, color: "white" },
-    { x: (width/2) + ((logoWidth - logoHeight) / 2), y: height/2, r: (logoHeight / 2) + logoBorder, color: "white" }
-  ]
+  if (logo) {
+    logoWidth = logo.width * logoScale
+    logoHeight = logo.height * logoScale
+
+    const offset = logoHeight - ((logoHeight * logo.circles) - logoWidth) / (logo.circles - 1)
+    const radius = logoHeight / 2
+    const paddedRadius = radius + logoBorder
+    const y = height / 2
+    const x = (width / 2) - (logoWidth / 2) + radius
+
+    for (var i = 0; i < logo.circles; i++) {
+      circles.push({
+        y,
+        r: paddedRadius,
+        x: x + (offset * i),
+        color: "white"
+      })
+    }
+  }
 
   for (var i = 1; i <= maxCircles; i++) {
     const r = randomLowerInt(minRadius, maxRadius)
@@ -42,13 +75,15 @@ export const draw = (canvas, {
     }
   }
 
-  drawImage(ctx, {
-    src: "./assets/pp.svg",
-    width: logoWidth,
-    height: logoHeight,
-    x: (width - logoWidth) / 2,
-    y: (height - logoHeight) / 2
-  })
+  if (logo) {
+    drawImage(ctx, {
+      src: logo.path,
+      width: logoWidth,
+      height: logoHeight,
+      x: (width - logoWidth) / 2,
+      y: (height - logoHeight) / 2
+    })
+  }
 
   circles.forEach(circle => {
     drawCircle(ctx, circle)

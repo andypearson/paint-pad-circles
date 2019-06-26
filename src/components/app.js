@@ -12,8 +12,15 @@ const DEFAULT_OPTIONS = {
   logoScale: 6,
   logoBorder: 16,
   circleSpacing: 4,
-  overlapChance: 0
+  overlapChance: 0,
+  logoStyle: "icon"
 }
+
+const LOGO_STYLE_OPTIONS = [
+  { label: "None", value: "" },
+  { label: "PP icon", value: "icon" },
+  { label: "Full logo", value: "logo" }
+]
 
 const App = () => {
   const canvasEl = useRef(null)
@@ -27,6 +34,7 @@ const App = () => {
   const [logoBorder, setLogoBorder] = useState(DEFAULT_OPTIONS.logoBorder)
   const [circleSpacing, setCircleSpacing] = useState(DEFAULT_OPTIONS.circleSpacing)
   const [overlapChance, setOverlapChance] = useState(DEFAULT_OPTIONS.overlapChance)
+  const [logoStyle, setLogoStyle] = useState(DEFAULT_OPTIONS.logoStyle)
 
   useEffect(() => draw(canvasEl.current, DEFAULT_OPTIONS), [])
 
@@ -40,7 +48,8 @@ const App = () => {
       logoScale,
       logoBorder,
       circleSpacing,
-      overlapChance
+      overlapChance,
+      logoStyle
     })
   }
 
@@ -57,6 +66,7 @@ const App = () => {
           <ToolbarOption label="Logo border" name="logo_border" value={logoBorder} type="number" onChange={setLogoBorder} />
           <ToolbarOption label="Circle spacing" name="circle_spacing" value={circleSpacing} type="number" onChange={setCircleSpacing} />
           <ToolbarOption label="Overlap chance" name="overlap_chance" value={overlapChance} type="number" onChange={setOverlapChance} />
+          <ToolbarOption label="Logo style" name="logo_style" value={logoStyle} type="select" onChange={setLogoStyle} options={LOGO_STYLE_OPTIONS} />
 
           <input type="submit" value="UPDATE" onClick={updateArtwork} />
         </div>
