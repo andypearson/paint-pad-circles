@@ -13,14 +13,26 @@ const ToolbarOption = ({ label, name, value, type, onChange, options }) => {
         ))}
       </select>
     )
-  } else {
+  } else if (type === "float") {
     input = (
       <input
         id={name}
         name={name}
-        type={type}
+        type="number"
         value={value}
-        className={`toolbar__input--${type}`}
+        step="0.1"
+        className={`toolbar__input--number`}
+        onChange={(event) => onChange(event.target.value.length > 0 ? parseFloat(event.target.value, 10) : "")}
+      />
+    )
+  } else if (type === "number") {
+    input = (
+      <input
+        id={name}
+        name={name}
+        type="number"
+        value={value}
+        className={`toolbar__input--number`}
         onChange={(event) => onChange(event.target.value.length > 0 ? parseInt(event.target.value, 10) : "")}
       />
     )

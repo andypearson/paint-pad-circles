@@ -32,12 +32,16 @@ export const draw = (canvas, {
   logoBorder,
   circleSpacing,
   overlapChance,
-  logoStyle
+  logoStyle,
+  circleOpacity,
+  layerStyle
 }) => {
   resize(canvas, { width, height })
 
   const ctx = canvas.getContext("2d")
   const circles = []
+
+  ctx.globalCompositeOperation = layerStyle
 
   const logo = LOGOS[logoStyle]
   let logoWidth
@@ -68,7 +72,7 @@ export const draw = (canvas, {
     const x = randomInt(0 - r, width + r)
     const y = randomInt(0 - r, height + r)
 
-    const circle = { x, y, r, color: rgbaHex(sample(colors), 0.7) }
+    const circle = { x, y, r, color: rgbaHex(sample(colors), circleOpacity) }
 
     if (oneIn(overlapChance) || !circlesOverlap(circle, circles, circleSpacing)) {
       circles.push(circle)

@@ -15,7 +15,7 @@ select {
 
 input[type=number],
 select {
-  font-size: 16px;
+  font-size: 15px;
   border: 2px solid #bbb;
   border-radius: 3px;
   padding: 2px 5px;
@@ -35,7 +35,7 @@ input[type=submit] {
   font-size: 24px;
   border-radius: 3px;
   cursor: pointer;
-  margin-top: 1em;
+  margin-top: .6em;
 }
 
 canvas {
@@ -44,7 +44,7 @@ canvas {
 
 .container {
   padding: 20px;
-  margin-left: 9em;
+  margin-left: 10em;
 }
 
 .toolbar {
@@ -55,7 +55,7 @@ canvas {
   bottom: 0;
   background-color: #e8e8e8;
   overflow-y: scroll;
-  width: 9em;
+  width: 10em;
 }
 
 .toolbar__container {
@@ -69,6 +69,5 @@ canvas {
 .toolbar__label {
   display: block;
   font-size: 12px;
-  padding: 0 0 3px;
   cursor: pointer;
 }

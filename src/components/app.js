@@ -13,13 +13,35 @@ const DEFAULT_OPTIONS = {
   logoBorder: 16,
   circleSpacing: 4,
   overlapChance: 0,
-  logoStyle: "icon"
+  logoStyle: "icon",
+  circleOpacity: 0.7,
+  layerStyle: "source-over"
 }
 
 const LOGO_STYLE_OPTIONS = [
   { label: "None", value: "" },
-  { label: "PP icon", value: "icon" },
-  { label: "Full logo", value: "logo" }
+  { label: "Icon", value: "icon" },
+  { label: "Logo", value: "logo" }
+]
+
+const LAYER_STYLE_OPTIONS = [
+  { label: "Normal", value: "source-over" },
+  { label: "Lighter", value: "lighter" },
+  { label: "Multiply", value: "multiply" },
+  { label: "Screen", value: "screen" },
+  { label: "Overlay", value: "overlay" },
+  { label: "Darken", value: "darken" },
+  { label: "Lighten", value: "lighten" },
+  { label: "Dodge", value: "color-dodge" },
+  { label: "Burn", value: "color-burn" },
+  { label: "Hard light", value: "hard-light" },
+  { label: "Soft light", value: "soft-light" },
+  { label: "Difference", value: "difference" },
+  { label: "Exclusion", value: "exclusion" },
+  { label: "Hue", value: "hue" },
+  { label: "Saturation", value: "saturation" },
+  { label: "Color", value: "color" },
+  { label: "Luminosity", value: "luminosity" }
 ]
 
 const App = () => {
@@ -35,6 +57,8 @@ const App = () => {
   const [circleSpacing, setCircleSpacing] = useState(DEFAULT_OPTIONS.circleSpacing)
   const [overlapChance, setOverlapChance] = useState(DEFAULT_OPTIONS.overlapChance)
   const [logoStyle, setLogoStyle] = useState(DEFAULT_OPTIONS.logoStyle)
+  const [circleOpacity, setCircleOpacity] = useState(DEFAULT_OPTIONS.circleOpacity)
+  const [layerStyle, setLayerStyle] = useState(DEFAULT_OPTIONS.layerStyle)
 
   useEffect(() => draw(canvasEl.current, DEFAULT_OPTIONS), [])
 
@@ -49,7 +73,9 @@ const App = () => {
       logoBorder,
       circleSpacing,
       overlapChance,
-      logoStyle
+      logoStyle,
+      circleOpacity,
+      layerStyle
     })
   }
 
@@ -59,14 +85,16 @@ const App = () => {
         <div className="toolbar__container">
           <ToolbarOption label="Width" name="width" value={width} type="number" onChange={setWidth} />
           <ToolbarOption label="Height" name="height" value={height} type="number" onChange={setHeight} />
+          <ToolbarOption label="Layer style" name="layer_style" value={layerStyle} type="select" onChange={setLayerStyle} options={LAYER_STYLE_OPTIONS} />
           <ToolbarOption label="Min radius" name="min_radius" value={minRadius} type="number" onChange={setMinRadius} />
           <ToolbarOption label="Max radius" name="max_radius" value={maxRadius} type="number" onChange={setMaxRadius} />
           <ToolbarOption label="Max circles" name="max_circles" value={maxCircles} type="number" onChange={setMaxCircles} />
-          <ToolbarOption label="Logo scale" name="logo_scale" value={logoScale} type="number" onChange={setLogoScale} />
-          <ToolbarOption label="Logo border" name="logo_border" value={logoBorder} type="number" onChange={setLogoBorder} />
           <ToolbarOption label="Circle spacing" name="circle_spacing" value={circleSpacing} type="number" onChange={setCircleSpacing} />
+          <ToolbarOption label="Circle opacity" name="circle_opacity" value={circleOpacity} type="float" onChange={setCircleOpacity} />
           <ToolbarOption label="Overlap chance" name="overlap_chance" value={overlapChance} type="number" onChange={setOverlapChance} />
           <ToolbarOption label="Logo style" name="logo_style" value={logoStyle} type="select" onChange={setLogoStyle} options={LOGO_STYLE_OPTIONS} />
+          <ToolbarOption label="Logo scale" name="logo_scale" value={logoScale} type="number" onChange={setLogoScale} />
+          <ToolbarOption label="Logo border" name="logo_border" value={logoBorder} type="number" onChange={setLogoBorder} />
 
           <input type="submit" value="UPDATE" onClick={updateArtwork} />
         </div>
