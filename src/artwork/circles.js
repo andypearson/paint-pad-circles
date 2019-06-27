@@ -62,7 +62,7 @@ export const draw = (canvas, {
         y,
         r: paddedRadius,
         x: x + (offset * i),
-        color: "white"
+        color: false
       })
     }
   }
@@ -90,6 +90,8 @@ export const draw = (canvas, {
   }
 
   circles.forEach(circle => {
-    drawCircle(ctx, circle)
+    if (circle.color) {
+      drawCircle(ctx, circle)
+    }
   })
 }

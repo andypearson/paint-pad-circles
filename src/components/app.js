@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect, useCallback } from "react"
+import { format } from "date-fns"
 
 import ToolbarOption from "./toolbar_option"
 import { draw } from "../artwork/circles"
+import { toImage } from "../lib/canvas"
 
 const DEFAULT_OPTIONS = {
   width: 800,
@@ -79,6 +81,22 @@ const App = () => {
     })
   }
 
+  // Code adapted from https://codepen.io/joseluisq/pen/mnkLu
+  const downloadImage = () => {
+    const now = format(new Date(), "yyyy-MM-dd-HHmmss")
+    const link = document.createElement("a")
+
+    link.download = `${now}-paintpad-artwork.png`
+    link.href = toImage(canvasEl.current, { backgroundColor: "white" })
+
+    event = document.createEvent("MouseEvents");
+    event.initMouseEvent("click", true, true, window,
+                         0, 0, 0, 0, 0, false, false, false,
+                         false, 0, null)
+
+    link.dispatchEvent(event)
+  }
+
   return (
     <div>
       <div className="toolbar">
@@ -96,7 +114,8 @@ const App = () => {
           <ToolbarOption label="Logo scale" name="logo_scale" value={logoScale} type="number" onChange={setLogoScale} />
           <ToolbarOption label="Logo border" name="logo_border" value={logoBorder} type="number" onChange={setLogoBorder} />
 
-          <input type="submit" value="UPDATE" onClick={updateArtwork} />
+          <input type="submit" value="Update" onClick={updateArtwork} />
+          <button onClick={downloadImage}>Download</button>
         </div>
       </div>
 

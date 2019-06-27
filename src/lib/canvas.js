@@ -34,3 +34,32 @@ export const resize = (canvas, { width, height }) => {
 
   ctx.scale(ratio, ratio)
 }
+
+// Adapted from: http://www.mikechambers.com/blog/2011/01/31/setting-the-background-color-when-generating-images-from-canvas-todataurl/
+export const toImage = (canvas, { backgroundColor }) => {
+  const ctx = canvas.getContext("2d")
+  const width = canvas.width
+  const height = canvas.height
+  const compositeOperation = ctx.globalCompositeOperation
+
+  let data;
+
+  if (backgroundColor) {
+    data = ctx.getImageData(0, 0, width, height);
+
+    ctx.globalCompositeOperation = "destination-over"
+
+    ctx.fillStyle = backgroundColor
+    ctx.fillRect(0, 0, width, height)
+  }
+
+  const imageData = canvas.toDataURL("image/png;base64");
+
+  if (backgroundColor) {
+    ctx.clearRect(0, 0, width, height)
+    ctx.putImageData(data, 0, 0)
+    ctx.globalCompositeOperation = compositeOperation
+  }
+
+  return imageData
+}
