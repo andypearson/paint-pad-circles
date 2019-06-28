@@ -121,6 +121,7 @@ const App = () => {
 
       <div className="container">
         <canvas ref={canvasEl} width={DEFAULT_OPTIONS.width} height={DEFAULT_OPTIONS.height} />
+        <p><a href="https://paintpad.app">Visit Paint Pad</a></p>
       </div>
     </div>
   )
