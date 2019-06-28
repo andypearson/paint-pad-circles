@@ -1,4 +1,4 @@
-# Paint Pad Artwork
+# Paint Pad Circles
 
 Randomly generated [Paint Pad](https://paintpad.app) background images. [Try it out here](https://paintpad.app/circles).
 

@@ -64,7 +64,7 @@ const App = () => {
 
   useEffect(() => draw(canvasEl.current, DEFAULT_OPTIONS), [])
 
-  const updateArtwork = () => {
+  const updateCanvas = () => {
     draw(canvasEl.current, {
       width,
       height,
@@ -86,7 +86,7 @@ const App = () => {
     const now = format(new Date(), "yyyy-MM-dd-HHmmss")
     const link = document.createElement("a")
 
-    link.download = `${now}-paintpad-artwork.png`
+    link.download = `${now}-paintpad-circles.png`
     link.href = toImage(canvasEl.current, { backgroundColor: "white" })
 
     event = document.createEvent("MouseEvents");
@@ -114,7 +114,7 @@ const App = () => {
           <ToolbarOption label="Logo scale" name="logo_scale" value={logoScale} type="number" onChange={setLogoScale} />
           <ToolbarOption label="Logo border" name="logo_border" value={logoBorder} type="number" onChange={setLogoBorder} />
 
-          <input type="submit" value="Update" onClick={updateArtwork} />
+          <input type="submit" value="Update" onClick={updateCanvas} />
           <button onClick={downloadImage}>Download</button>
         </div>
       </div>
@@ -123,7 +123,7 @@ const App = () => {
         <canvas ref={canvasEl} width={DEFAULT_OPTIONS.width} height={DEFAULT_OPTIONS.height} />
         <p>
           <a href="https://paintpad.app">Visit Paint Pad</a>
-          {" / "} 
+          {" / "}
           <a href="https://github.com/andypearson/paint-pad-circles">View the code on GitHub</a>
         </p>
       </div>

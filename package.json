@@ -1,7 +1,7 @@
 {
-  "name": "paint-pad-artwork",
+  "name": "paint-pad-circles",
   "version": "1.0.0",
-  "repository": "git@bitbucket.org:andypearson/paint-pad-artwork.git",
+  "repository": "git@github.com:andypearson/paint-pad-circles.git",
   "author": "Andy Pearson",
   "license": "MIT",
   "private": true,
